@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Empty() {
     return (
         <ComponentContainer>
-            <EmptyImage source={require("../assets/images/emptytodo-removebg-preview.png")} />
+            <EmptyImage source={require("../assets/images/chat.jpg")} />
             <EmptyText>Add Task</EmptyText>
         </ComponentContainer>
     );

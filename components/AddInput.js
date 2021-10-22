@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import DatePicker from 'react-native-date-picker'
+import { Alert} from "react-native";
 
 import AntDesign from "react-native-vector-icons/AntDesign";
 
@@ -36,7 +37,12 @@ export default function AddInput({ submitHandler }) {
       />
       <SubmitButton
         onPress={() => {
-          setValue(submitHandler(value, date));
+          if (value.trim().length == 0) {
+            Alert.alert("Please complete the information")
+          }
+          else {
+            setValue(submitHandler(value, date));
+          }
         }}
       >
         <AntDesign name="plus" size={24} color="midnightblue" />

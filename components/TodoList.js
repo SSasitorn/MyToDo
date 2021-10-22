@@ -1,22 +1,44 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Alert } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import styled from "styled-components";
 
 export default function TodoList({ item, deleteItem }) {
+
+  const showConfirmDialog = () => {
+    return Alert.alert(
+      "Are your sure?",
+      "Are you sure you want to remove this box?",
+      [
+        {
+          text: "Yes",
+          onPress: () => {
+            deleteItem(item.key);
+          },
+        },
+        {
+          text: "No",
+        },
+      ]
+    );
+  };
+
+  const submitHandler = (value, date) => {
+    const todaynoww = date.getDate() + "-" + parseInt(date.getMonth() + 1) + "-" + parseInt(date.getFullYear() + 543);
+  }
   return (
     <ComponentContainer>
       <ListContainer>
-        <CirlceContainer onPress={() => {}}>
-          <Entypo name="circle" size={24} color="midnightblue" />
+        <CirlceContainer onPress={() => { }}>
+          <Entypo name="circle" size={24} color="#2E8B57" />
         </CirlceContainer>
         <View>
           <TextItem>{item.value}</TextItem>
           <TextDate>{item.date}</TextDate>
         </View>
-        <IconContainer onPress={() => deleteItem(item.key)}>
-          <MaterialIcons name="delete" size={24} color="midnightblue" />
+        <IconContainer onPress={() => showConfirmDialog(item.key)}>
+          <MaterialIcons name="delete" size={24} color="#2E8B57" />
         </IconContainer>
       </ListContainer>
     </ComponentContainer>

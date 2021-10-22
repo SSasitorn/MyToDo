@@ -11,11 +11,21 @@ export default function App() {
   const [data, setData] = useState([]);
 
   const submitHandler = (value, date) => {
+    const addDate = date.getDate() + "-" + parseInt(date.getMonth() + 1) + "-" + parseInt(date.getFullYear() + 543);
+
+    firestore()
+      .collection('myTodo')
+      .add({
+        value: value,
+        date: addDate,
+        key: Math.random().toString(),
+      })
+
     setData((prevTodo) => {
       return [
         {
           value: value,
-          date: date.toISOString().slice(0, 10),
+          date: addDate,
           key: Math.random().toString(),
         },
         ...prevTodo,
@@ -36,7 +46,7 @@ export default function App() {
   return (
     <ComponentContainer>
       <View>
-        <StatusBar barStyle="light-content" backgroundColor="midnightblue" />
+        <StatusBar barStyle="light-content" backgroundColor="#2E8B57" />
       </View>
       <View>
         <FlatList
@@ -57,7 +67,7 @@ export default function App() {
 }
 
 const ComponentContainer = styled.View`
-  background-color: midnightblue;
+  background-color: #2E8B57;
   height: 100%;
   flex-direction: column;
   align-items: center;
